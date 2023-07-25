@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Project } from './Project';
+import React, { useState } from 'react';
 
-function ProjectForm({ onSave, onCancel }) {
+function ProjectForm({ project: initialProject,onSave, onCancel }) {
+    
+    const [project, setProject] = useState(initialProject);
 
     const handleSubmit = (event) => {
            event.preventDefault();
@@ -37,6 +40,7 @@ function ProjectForm({ onSave, onCancel }) {
 }
 
 ProjectForm.propTypes = {
+    project: PropTypes.instanceOf(Project),
     onSave: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired
 };
