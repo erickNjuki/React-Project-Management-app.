@@ -7,7 +7,10 @@ function formatDescription(description) {
 }
 
 function ProjectCard(props) {
-  const { project } = props;
+  const { project, onEdit } = props;
+  const handleEditClick = (projectBeingEdited) => {
+    onEdit(projectBeingEdited);
+    };
   return (
     <div className="card">
       <img src={project.imageUrl} alt={project.name} />
@@ -17,7 +20,10 @@ function ProjectCard(props) {
         </h5>
         <p>{formatDescription(project.description)}</p>
         <p>Budget : {project.budget.toLocaleString()}</p>
-        <button class="bordered">
+        <button class="bordered"
+        onClick={() => {
+           handleEditClick(project);
+        }}>
         <span class="icon-edit "></span>
         Edit
         </button>
@@ -28,6 +34,7 @@ function ProjectCard(props) {
 
 ProjectCard.propTypes = {
   project: PropTypes.instanceOf(Project).isRequired,
+  onEdit: PropTypes.func.isRequired
 };
 
 export default ProjectCard;
